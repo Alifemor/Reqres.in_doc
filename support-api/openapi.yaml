@@ -9,13 +9,36 @@ info:
 servers:
   - url: https://reqres.in
 
-security:
-  - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        avatar:
+          type: string
+          format: uri
 
 paths:
   /api/users:
     get:
       summary: Get users with pagination
+      security:
+        - ApiKeyAuth: []
       parameters:
         - name: page
           in: query
@@ -42,10 +65,63 @@ paths:
                     items:
                       $ref: '#/components/schemas/User'
 
+    post:
+      summary: Create a new user
+      operationId: createUser
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the user
+                  example: "morpheus"
+                job:
+                  type: string
+                  description: Job title of the user
+                  example: "leader"
+              required:
+                - name
+                - job
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "morpheus"
+                  job:
+                    type: string
+                    example: "leader"
+                  id:
+                    type: integer
+                    example: 634
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: "2024-06-13T19:09:43.511Z"
+        '400':
+          description: Bad request – missing or invalid input data
+        '409':
+          description: Conflict – user with these parameters already exists
+
   /api/users/{id}:
     get:
       summary: Get user by ID
       description: Retrieve a single user by their unique ID
+      security:
+        - ApiKeyAuth: []
       parameters:
         - name: id
           in: path
@@ -75,27 +151,3 @@ paths:
           description: Bad request – invalid ID format
         '404':
           description: User not found
-
-components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: x-api-key
-
-  schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-        email:
-          type: string
-          format: email
-        first_name:
-          type: string
-        last_name:
-          type: string
-        avatar:
-          type: string
-          format: uri
