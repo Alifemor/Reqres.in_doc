@@ -150,3 +150,56 @@ paths:
           description: Bad request – invalid ID format
         '404':
           description: User not found
+    put:
+      summary: Replace user
+      operationId: replaceUser
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the user
+                  example: "morpheus"
+                job:
+                  type: string
+                  description: Job title of the user
+                  example: "zion resident"
+              required:
+                - name
+                - job
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "morpheus"
+                  job:
+                    type: string
+                    example: "zion resident"
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: "2024-06-13T21:47:00.123Z"
+        '400':
+          description: Bad request – missing or invalid input data
+        '404':
+          description: User not found
