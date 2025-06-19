@@ -115,7 +115,6 @@ paths:
           description: Bad request – missing or invalid input data
         '409':
           description: Conflict – user with these parameters already exists
-
   /api/users/{id}:
     get:
       summary: Get user by ID
@@ -126,6 +125,7 @@ paths:
         - name: id
           in: path
           required: true
+          description: Unique identifier of the user
           schema:
             type: integer
             description: Unique identifier of the user
