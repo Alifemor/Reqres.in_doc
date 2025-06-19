@@ -1,1 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Reqres Pet Project API
+  version: 1.0.0
+  description: |
+    Документация для учебного проекта на основе сервиса Reqres.  
+    Основной функционал: работа с пользователями и тестовая авторизация.
+
+servers:
+  - url: https://reqres.in
+
+paths:
+  /api/users:
+    get:
+      summary: Get list of users with pagination
+      description: Возвращает список пользователей с параметрами пагинации.
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Номер страницы
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Количество пользователей на странице
+      responses:
+        '200':
+          description: Успешный ответ со списком пользователей
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                    example: 2
+                  per_page:
+                    type: integer
+                    example: 6
+                  total:
+                    type: integer
+                    example: 12
+                  total_pages:
+                    type: integer
+                    example: 2
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 7
+                        email:
+                          type: string
+                          format: email
+                          example: "michael.lawson@reqres.in"
+                        first_name:
+                          type: string
+                          example: "Michael"
+                        last_name:
+                          type: string
+                          example: "Lawson"
+                        avatar:
+                          type: string
+                          format: uri
+                          example: "https://reqres.in/img/faces/7-image.jpg"
+        '400':
+          description: Неверный запрос — отсутствуют или некорректны параметры
+        '404':
+          description: Пользователи не найдены
 
