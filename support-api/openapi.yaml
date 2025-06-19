@@ -9,11 +9,11 @@ info:
 servers:
   - url: https://reqres.in
 
+
 paths:
   /api/users:
     get:
-      summary: Get list of users with pagination
-      description: Возвращает список пользователей с параметрами пагинации.
+      summary: Get users with pagination
       parameters:
         - name: page
           in: query
@@ -29,48 +29,65 @@ paths:
           description: Количество пользователей на странице
       responses:
         '200':
-          description: Успешный ответ со списком пользователей
+          description: List of users
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  page:
-                    type: integer
-                    example: 2
-                  per_page:
-                    type: integer
-                    example: 6
-                  total:
-                    type: integer
-                    example: 12
-                  total_pages:
-                    type: integer
-                    example: 2
                   data:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 7
-                        email:
-                          type: string
-                          format: email
-                          example: "michael.lawson@reqres.in"
-                        first_name:
-                          type: string
-                          example: "Michael"
-                        last_name:
-                          type: string
-                          example: "Lawson"
-                        avatar:
-                          type: string
-                          format: uri
-                          example: "https://reqres.in/img/faces/7-image.jpg"
-        '400':
-          description: Неверный запрос — отсутствуют или некорректны параметры
-        '404':
-          description: Пользователи не найдены
+                      $ref: '#/components/schemas/User'
 
+  /api/users/{id}:
+    get:
+      summary: Get user by ID
+      description: Retrieve a single user by their unique ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the user
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+                  support:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        format: uri
+                      text:
+                        type: string
+        '400':
+          description: Bad request – invalid ID format
+        '404':
+          description: User not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        avatar:
+          type: string
+          format: uri
