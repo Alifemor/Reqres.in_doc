@@ -127,8 +127,7 @@ paths:
           required: true
           description: Unique identifier of the user
           schema:
-            type: integer
-            description: Unique identifier of the user
+            type: integer          
       responses:
         '200':
           description: User found
