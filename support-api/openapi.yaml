@@ -9,6 +9,8 @@ info:
 servers:
   - url: https://reqres.in
 
+security:
+  - ApiKeyAuth: []
 
 paths:
   /api/users:
@@ -75,6 +77,12 @@ paths:
           description: User not found
 
 components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
   schemas:
     User:
       type: object
