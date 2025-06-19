@@ -203,3 +203,67 @@ paths:
           description: Bad request – missing or invalid input data
         '404':
           description: User not found
+    patch:
+      summary: Update part of user data
+      operationId: updateUser
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "neo"
+                job:
+                  type: string
+                  example: "zion soldier"
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  job:
+                    type: string
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: "2024-06-13T21:11:00.000Z"
+        '400':
+          description: Bad request – invalid data
+        '404':
+          description: User not found
+    delete:
+      summary: Delete user by ID
+      operationId: deleteUser
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User deleted successfully – no content
+        '404':
+          description: User not found
