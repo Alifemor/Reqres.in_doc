@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "users",
+			"name": "Get users",
 			"id": "45615975-4a1232ad-b2bb-4c28-9116-6238e7898325",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
