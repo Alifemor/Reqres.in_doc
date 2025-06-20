@@ -9,16 +9,31 @@
 ![get-users](./get_users.png)
 
 ## 2. Получение пользователя по ID
-[Посмотреть диаграмму](./diagrams/get-user-by-id.png)
+
+**Эндпоинт:** `GET /api/users/{id}`
+
+![get-users](./get_users{id}.png)
 
 ## 3. Создание пользователя (POST)
-[Посмотреть диаграмму](./diagrams/create-user.png)
+
+**Эндпоинт:** `POST /api/users`
+
+![get-users](./create_user.png)
 
 ## 4. Обновление пользователя (PUT)
-[Посмотреть диаграмму](./diagrams/put-user.png)
+
+**Эндпоинт:** `PUT /api/users/{id}`
+
+![get-users](./replace_user.png)
 
 ## 5. Частичное обновление пользователя (PATCH)
-[Посмотреть диаграмму](./diagrams/patch-user.png)
+
+**Эндпоинт:** `PATCH /api/users/{id}`
+
+![get-users](./update_user.png)
 
 ## 6. Удаление пользователя (DELETE)
-[Посмотреть диаграмму](./diagrams/delete-user.png)
+
+**Эндпоинт:** `DELETE /api/users/{id}`
+
+![get-users](./delete_user.png)
