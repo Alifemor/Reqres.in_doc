@@ -1,0 +1,10 @@
+@startuml
+actor User
+participant Reqres_API
+database Reqres_DB
+
+User -> Reqres_API: GET /api/users?page=2&per_page=6
+Reqres_API -> Reqres_DB: SELECT users LIMIT per_page OFFSET (page-1)*per_page
+Reqres_DB --> Reqres_API: список пользователей
+Reqres_API --> User: 200 OK + JSON (users[], page, total, total_pages)
+@enduml
