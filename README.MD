@@ -28,7 +28,7 @@
 
 ## Документация
 - [API спецификация (OpenAPI)](./support-api/openapi.yaml)
-- [Диаграммы последовательности](./support-api/docs/uml/sequence/)
+- [Диаграммы последовательности](./support-api/docs/uml/sequence/sequence_list.md)
 - [Контекст и требования](./support-api/docs/context.md)
 
 ## Статус
