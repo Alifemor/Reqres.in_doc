@@ -1,0 +1,17 @@
+@startuml
+actor User
+
+left to right direction
+
+usecase "Посмотреть список пользователей" as UC1
+usecase "Получить пользователя по ID" as UC2
+usecase "Создать пользователя" as UC3
+usecase "Обновить пользователя" as UC4
+usecase "Удалить пользователя" as UC5
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+@enduml
