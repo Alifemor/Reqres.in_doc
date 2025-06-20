@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant Reqres_API
+database Reqres_DB
+
+User -> Reqres_API: GET /api/users/{id}
+opt Отсутствует API-ключ
+    Reqres_API --> User: 403 Forbidden
+else Ключ передан
+    Reqres_API -> Reqres_DB: SELECT * FROM users WHERE id = {id}
+    alt Пользователь найден
+        Reqres_DB --> Reqres_API: User data
+        Reqres_API --> User: 200 OK + user JSON
+    else Пользователь не найден
+        Reqres_DB --> Reqres_API: null
+        Reqres_API --> User: 404 Not Found
+    end
+end
+@enduml
