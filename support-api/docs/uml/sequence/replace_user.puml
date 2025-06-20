@@ -1,0 +1,21 @@
+@startuml
+actor User
+participant Reqres_API
+database Reqres_DB
+
+User -> Reqres_API: PUT /api/users/{id} (name, job)
+
+opt Отсутствует API-ключ
+    Reqres_API --> User: 403 Forbidden
+else Ключ передан
+    alt Неверные данные
+        Reqres_API --> User: 400 Bad Request
+    alt Пользователь не найден
+        Reqres_API --> User: 404 User not found
+    else Данные валидны
+        Reqres_API -> Reqres_DB: UPDATE users SET name, job WHERE id = {id}
+        Reqres_DB --> Reqres_API: OK
+        Reqres_API --> User: 200 OK + updated user info
+    end
+end
+@enduml
