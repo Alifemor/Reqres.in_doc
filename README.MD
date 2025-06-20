@@ -27,9 +27,13 @@
 - Оценить API по спецификации
 
 ## Документация
-- [API спецификация (OpenAPI)](./support-api/openapi.yaml)
-- [Диаграммы](./support-api/docs/uml/diagram_list.md)
 - [Контекст и требования](./support-api/docs/context.md)
+- [Architectural Decisions](./support-api/docs/decisions.md)
+- [Требования к API](./support-api/docs/requirements.md)
+- [API спецификация (OpenAPI)](./support-api/openapi.yaml)
+- [Use Cases](./support-api/docs/use-cases.md)
+- [Диаграммы](./support-api/docs/uml/diagram_list.md)
+
 
 ## Postman
 - [![Run in Postman](https://run.pstmn.io/button.svg)](https://dmitriyk-7769080.postman.co/workspace/Dmitriy-K's-Workspace~7acc78c4-f88c-4873-8fef-f1b19c4db1ee/collection/45615975-b35ecbbf-0b58-41b2-8b49-91daf9d85030?action=share&creator=45615975)
