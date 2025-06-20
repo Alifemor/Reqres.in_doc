@@ -145,7 +145,7 @@
 			"response": []
 		},
 		{
-			"name": "users/{id}",
+			"name": "Patch user by ID",
 			"id": "45615975-b11c0ce1-2565-4a07-b5a9-d7e5cd22c54d",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
