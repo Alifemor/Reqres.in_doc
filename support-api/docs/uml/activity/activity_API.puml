@@ -1,0 +1,67 @@
+@startuml
+
+start
+:Пользователь выбирает действие;
+
+split
+    if (Тип действия = GET список?) then
+        --> :GET /api/users?page=...;
+        if (API-ключ?) then
+            --> :403 Forbidden;
+        else
+            --> :Получить список;
+            --> :Показать список пользователю;
+        endif
+    endif
+split again
+    if (Тип действия = GET один?) then
+        --> :GET /api/users/{id};
+        if (API-ключ?) then
+            --> :403 Forbidden;
+        elseif (User не найден?) then
+            --> :404 Not Found;
+        else
+            --> :Показать данные пользователя;
+        endif
+    endif
+split again
+    if (Тип действия = POST?) then
+        --> :POST /api/users;
+        if (API-ключ?) then
+            --> :403 Forbidden;
+        elseif (Данные некорректны?) then
+            --> :400 Bad Request;
+        else
+            --> :Пользователь создан;
+            --> :Показать результат;
+        endif
+    endif
+split again
+    if (Тип действия = PUT/PATCH?) then
+        --> :PUT или PATCH /api/users/{id};
+        if (API-ключ?) then
+            --> :403 Forbidden;
+        elseif (User не найден?) then
+            --> :404 Not Found;
+        elseif (Данные некорректны?) then
+            --> :400 Bad Request;
+        else
+            --> :Пользователь обновлён;
+            --> :Показать результат;
+        endif
+    endif
+split again
+    if (Тип действия = DELETE?) then
+        --> :DELETE /api/users/{id};
+        if (API-ключ?) then
+            --> :403 Forbidden;
+        elseif (User не найден?) then
+            --> :404 Not Found;
+        else
+            --> :Пользователь удалён;
+        endif
+    endif
+endsplit
+
+stop
+@enduml
