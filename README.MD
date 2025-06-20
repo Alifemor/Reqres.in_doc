@@ -28,7 +28,7 @@
 
 ## Документация
 - [API спецификация (OpenAPI)](./support-api/openapi.yaml)
-- [Диаграммы последовательности](./support-api/docs/uml/sequence/sequence_list.md)
+- [Диаграммы](./support-api/docs/uml/diagram_list.md)
 - [Контекст и требования](./support-api/docs/context.md)
 
 ## Postman
