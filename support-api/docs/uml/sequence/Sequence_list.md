@@ -6,7 +6,7 @@
 
 **Эндпоинт:** `GET /api/users?page=2`
 
-![get-users](./sequence/get_users.png)
+![get-users](.docs/uml/sequence/get_users.png)
 
 ## 2. Получение пользователя по ID
 [Посмотреть диаграмму](./diagrams/get-user-by-id.png)
