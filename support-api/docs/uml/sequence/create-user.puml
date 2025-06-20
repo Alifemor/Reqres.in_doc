@@ -1,0 +1,18 @@
+@startuml
+actor User
+participant Reqres_API
+database Reqres_DB
+
+User -> Reqres_API: POST /api/users (name, job)
+opt Отсутствует API-ключ
+    Reqres_API --> User: 403 Forbidden
+else Ключ передан
+    alt Неверные данные
+        Reqres_API --> User: 400 Bad Request
+    else Данные валидны
+        Reqres_API -> Reqres_DB: Insert new user
+        Reqres_DB --> Reqres_API: OK
+        Reqres_API --> User: 201 Created + createdAt
+    end
+end
+@enduml
